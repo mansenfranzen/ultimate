@@ -1,2 +1,2 @@
 # ultimate
-Scoring and reporting web framework specialized for Ultimate Frisbee.
+Scoring and reporting web framework for Ultimate Frisbee.
