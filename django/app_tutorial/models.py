@@ -13,3 +13,22 @@ class Tournament(models.Model):
     date_end = models.DateTimeField('End Date')
     type = models.IntegerField()
 
+
+class Game(models.Model):
+    tournament = models.ForeignKey(Tournament)
+    time_stamp = models.DateTimeField('Game Time')
+    type = models.IntegerField()
+
+
+class GameScore(models.Model):
+    game = models.ForeignKey(Game)
+    team = models.ForeignKey(Team)
+    value = models.IntegerField()
+
+
+class SpirtScore(models.Model):
+    game = models.ForeignKey(Game)
+    subject = models.ForeignKey(Team)
+    object = models.ForeignKey(Team)
+    type = models.IntegerField()
+    value = models.IntegerField()
