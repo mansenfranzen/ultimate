@@ -3,7 +3,7 @@ Updated DB schema
 
 See additional notes below.
 
-.. image:: https://github.com/mansenfranzen/ultimate/blob/master/material/db_model_19092016.svg
+.. image::  https://cdn.rawgit.com/mansenfranzen/ultimate/master/material/db_model_19092016.svg
 
 :game:
   The ``type`` column defines the kind of game including group, crossover and knockout games (and others...).
