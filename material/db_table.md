@@ -30,10 +30,10 @@
 ## Account Table
 | account_id (pk, int) | team_id (fk) | email (char)             | login (char) | type (int) | 
 |----------------------|--------------|--------------------------|--------------|------------| 
-| 1                    | 1            | pansen@franklinstoner.de | pansen       | 1          | 
-| 2                    | 1            | brand.matthias@gmail.com | matze        | 1          | 
-| 3                    | 1            | moritz.kretz@gmail.com   | mou          | 1          | 
-| 4                    | 2            | irgendwer@karlsruhe.de   | Gummibär     | 2          | 
+| 1                    | 1            | email@abc.de             | pansen       | 1          |
+| 2                    | 1            | email@abc.de             | matze        | 1          |
+| 3                    | 1            | email@abc.de             | mou          | 1          |
+| 4                    | 2            | email@abc.de             | Gummibär     | 2          |
 
 > Account Table may be redundant. Django Auth System should do the job. Team membership may be added directly to auth core table.
 
