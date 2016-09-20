@@ -27,8 +27,8 @@ class Tournament(models.Model):
 class Game(models.Model):
     tournament_id = models.ForeignKey(Tournament)
     date = models.DateTimeField('Game Time')
-    team_id_home = models.ForeignKey(Team)
-    team_id_away = models.ForeignKey(Team)
+    team_id_home = models.ForeignKey(Team, related_name='team_home')
+    team_id_away = models.ForeignKey(Team, related_name='team_away')
     score_home = models.IntegerField()
     score_away = models.IntegerField()
     type = models.IntegerField()
@@ -37,16 +37,16 @@ class Game(models.Model):
 
 class GameReport(models.Model):
     game_id = models.ForeignKey(Game)
-    player_id_assist = models.ForeignKey(Player)
-    player_id_score = models.ForeignKey(Player)
+    player_id_assist = models.ForeignKey(Player, related_name='player_assist')
+    player_id_score = models.ForeignKey(Player, related_name='player_score')
     timestamp = models.DateTimeField('Timestamp')
     event = models.IntegerField()
 
 
 class SpirtScore(models.Model):
     game_id = models.ForeignKey(Game)
-    team_id_providing = models.ForeignKey(Team)
-    team_id_receiving = models.ForeignKey(Team)
+    team_id_providing = models.ForeignKey(Team, related_name='team_providing')
+    team_id_receiving = models.ForeignKey(Team, related_name='team_receiving')
     score_category = models.IntegerField()
     score = models.IntegerField()
 
