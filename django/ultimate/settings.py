@@ -34,6 +34,7 @@ AUTH_PROFILE_MODULE = "app_tutorial.Profile"
 # Application definition
 
 INSTALLED_APPS = [
+    'sampledatahelper',
     'app_tutorial.apps.AppTutorialConfig',
     'django.contrib.admin',
     'django.contrib.auth',
