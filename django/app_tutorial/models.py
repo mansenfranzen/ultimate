@@ -3,6 +3,36 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Nationality(models.Model):
+    abbreviation = models.CharField(max_length=5)
+    name = models.CharField(max_length=75)
+
+
+class Division(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class TournamentType(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class GameType(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class GameReportEventType(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class SpiritScoreCategory(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=50)
+    origin = models.CharField(max_length=50)
+    division = models.ForeignKey(Division)
+
 
 class Profile(models.Model):
     user_id = models.ForeignKey(User, unique=True)
@@ -19,12 +49,6 @@ class Profile(models.Model):
                           last_name=self.user_id.last_name,
                           number=self.number,
                           team=self.team_id.name)
-
-
-class Team(models.Model):
-    name = models.CharField(max_length=50)
-    origin = models.CharField(max_length=50)
-    division = models.ForeignKey(Division)
 
 
 class Tournament(models.Model):
@@ -70,28 +94,3 @@ class TournamentParticipation(models.Model):
     team_id = models.ForeignKey(Team)
     player_id = models.ForeignKey(Profile)
     player_number = models.IntegerField(blank=True, null=True)
-
-
-class Nationality(models.Model):
-    abbreviation = models.CharField(max_length=2)
-    name = models.CharField(max_length=75)
-
-
-class Division(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class TournamentType(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class GameType(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class GameReportEventType(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class SpiritScoreCategory(models.Model):
-    name = models.CharField(max_length=50)
