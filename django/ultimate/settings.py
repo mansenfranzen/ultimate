@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Add user profile
+AUTH_PROFILE_MODULE = "app_tutorial.Profile"
+
 
 # Application definition
 
