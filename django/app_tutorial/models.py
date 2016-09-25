@@ -57,6 +57,7 @@ class Tournament(models.Model):
     date_begin = models.DateField('Begin Date')
     date_end = models.DateField('End Date')
     type = models.ForeignKey(TournamentType)
+    division = models.ForeignKey(Division)
 
 
 class Game(models.Model):
@@ -91,6 +92,6 @@ class SpirtScore(models.Model):
 
 class TournamentParticipation(models.Model):
     tournament_id = models.ForeignKey(Tournament)
-    team_id = models.ForeignKey(Team)
+    team_id = models.ForeignKey(Team, blank=True)
     player_id = models.ForeignKey(Profile)
-    player_number = models.IntegerField(blank=True, null=True)
+    player_number = models.IntegerField(blank=True)
