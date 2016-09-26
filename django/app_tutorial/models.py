@@ -3,6 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Nationality(models.Model):
     abbreviation = models.CharField(max_length=5)
     name = models.CharField(max_length=75)
@@ -35,7 +36,7 @@ class Team(models.Model):
 
 
 class Profile(models.Model):
-    user_id = models.ForeignKey(User, unique=True)
+    user_id = models.OneToOneField(User)
     team_id = models.ForeignKey(Team)
     number = models.IntegerField(blank=True, null=True)
     birthday = models.DateField('Birthday', blank=True)

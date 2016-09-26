@@ -6,7 +6,7 @@ from ...models import Nationality, Division, TournamentType, GameType, \
     GameReportEventType, SpiritScoreCategory
 
 BASE_URL = "https://raw.githubusercontent.com/mansenfranzen/ultimate/" \
-              "master/material/misc/_db_populate_{class_name}.csv"
+              "master/material/db_populate/_db_populate_{class_name}.csv"
 
 
 class Command(BaseCommand):
