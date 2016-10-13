@@ -1,3 +1,4 @@
 Design
 ======
 
+.. image:: usecase.svg
