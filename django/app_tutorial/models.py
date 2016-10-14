@@ -4,9 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# TODO (Feedback): Sort classes alphabetically or logically?
-
-
 class DivisionAge(models.Model):
     name = models.CharField(max_length=50)
     # In our discussion this was denoted as type, I thought this might be handier.
@@ -19,13 +16,46 @@ class DivisionType(models.Model):
     name = models.CharField(max_length=50)
 
 
+class FieldType(models.Model):
+    type = models.CharField(max_length=50)
+
+
 class Field(models.Model):
     location = models.CharField(max_length=100)
     type = models.ForeignKey(FieldType)
 
 
-class FieldType(models.Model):
-    type = models.CharField(max_length=50)
+class Location(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=100)
+
+
+class Tournament(models.Model):
+    name = models.CharField(max_length=75)
+    location = models.ForeignKey(Location)
+    date_begin = models.DateField('Begin Date')
+    date_end = models.DateField('End Date')
+    # type = models.ForeignKey(TournamentType)
+
+
+class TournamentDivision(models.Model):
+    tournament = models.ForeignKey(DivisionType)
+    age_group = models.ForeignKey(DivisionAge)
+    division = models.ForeignKey(DivisionType)
+
+
+class TournamentField(models.Model):
+    tournament = models.ForeignKey(Tournament)
+    field = models.ForeignKey(Field)
+    field_number = models.IntegerField()  # TODO (Feedback): imo this is way more practical than a string name
+
+
+class Squad(models.Model):
+    # TODO: When teams are added, make name nullable and build squad name from division age and type if name is empty.
+    division_age = models.ForeignKey(DivisionAge)
+    division_type = models.ForeignKey(DivisionType)
+    name = models.CharField(max_length=50)
+    # team = models.ForeignKey(Team)
 
 
 class Game(models.Model):
@@ -41,11 +71,6 @@ class GameScore(models.Model):  # TODO (Feedback): OneToOne Relation atm --> nec
     score_home = models.IntegerField()
     score_away = models.IntegerField()
     game = models.OneToOneField(Game)
-
-
-class Location(models.Model):
-    name = models.CharField(max_length=50)
-    location = models.CharField(max_length=100)
 
 
 class Profile(models.Model):
@@ -71,48 +96,20 @@ class SpiritReport(models.Model):
     game = models.ForeignKey(Game)
 
 
+class SpiritScoreCategory(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class SpiritScore(models.Model):
     report = models.ForeignKey(SpiritReport)
     type = models.ForeignKey(SpiritScoreCategory)
     score = models.IntegerField()
 
 
-class SpiritScoreCategory(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class Squad(models.Model):
-    # TODO: When teams are added, make name nullable and build squad name from division age and type if name is empty.
-    division_age = models.ForeignKey(DivisionAge)
-    division_type = models.ForeignKey(DivisionType)
-    name = models.CharField(max_length=50)
-    # team = models.ForeignKey(Team)
-
-
 class Team(models.Model):
     name = models.CharField(max_length=50)
     origin = models.CharField(max_length=50)
     division = models.ForeignKey(DivisionType)
-
-
-class Tournament(models.Model):
-    name = models.CharField(max_length=75)
-    location = models.ForeignKey(Location)
-    date_begin = models.DateField('Begin Date')
-    date_end = models.DateField('End Date')
-    # type = models.ForeignKey(TournamentType)
-
-
-class TournamentDivision(models.Model):
-    tournament = models.ForeignKey(DivisionType)
-    age_group = models.ForeignKey(DivisionAge)
-    division = models.ForeignKey(DivisionType)
-
-
-class TournamentField(models.Model):
-    tournament = models.ForeignKey(Tournament)
-    field = models.ForeignKey(Field)
-    field_number = models.IntegerField()  # TODO (Feedback): imo this is way more practical than a string name
 
 # ################### Legacy and future work
 # class Nationality(models.Model):
