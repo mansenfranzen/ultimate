@@ -2,21 +2,21 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import *
+from . import models
 
-admin.site.register(DivisionAge)
-admin.site.register(DivisionType)
-admin.site.register(Field)
-admin.site.register(FieldType)
-admin.site.register(Game)
-admin.site.register(GameScore)
-admin.site.register(Location)
-admin.site.register(Profile)
-admin.site.register(SpiritReport)
-admin.site.register(SpiritScore)
-admin.site.register(SpiritScoreCategory)
-admin.site.register(Squad)
-admin.site.register(Team)
-admin.site.register(Tournament)
-admin.site.register(TournamentDivision)
-admin.site.register(TournamentField)
+admin.site.register(models.DivisionAge)
+admin.site.register(models.DivisionType)
+admin.site.register(models.Field)
+admin.site.register(models.FieldType)
+admin.site.register(models.Game)
+admin.site.register(models.GameScore)
+admin.site.register(models.Location)
+admin.site.register(models.Profile)
+admin.site.register(models.SpiritReport)
+admin.site.register(models.SpiritScore)
+admin.site.register(models.SpiritScoreCategory)
+admin.site.register(models.Squad)
+admin.site.register(models.Team)
+admin.site.register(models.Tournament)
+admin.site.register(models.TournamentDivision)
+admin.site.register(models.TournamentField)

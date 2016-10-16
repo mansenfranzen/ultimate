@@ -4,7 +4,7 @@
 import pandas as pd
 import os
 from django.core.management.base import BaseCommand
-from ...models import *
+from ... import models
 
 BASE_URL = os.path.join('..', 'material', 'db_populate', '_db_populate_{class_name}.csv')
 
@@ -28,6 +28,6 @@ class Command(BaseCommand):
             model.objects.create(**row.to_dict())
 
     def handle(self, *args, **options):
-        classes = [SpiritScoreCategory]
+        classes = [models.SpiritScoreCategory]
         for class_name in classes:
             self.populate_from_csv(class_name)
