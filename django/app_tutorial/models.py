@@ -12,7 +12,6 @@ class DivisionAge(models.Model):
 
 
 class DivisionType(models.Model):
-    # TODO (Feedback): In our discussion this was division gender, but I feel like Mixed and Open aren't really genders.
     name = models.CharField(max_length=50)
 
 
@@ -47,7 +46,7 @@ class TournamentDivision(models.Model):
 class TournamentField(models.Model):
     tournament = models.ForeignKey(Tournament)
     field = models.ForeignKey(Field)
-    field_number = models.IntegerField()  # TODO (Feedback): imo this is way more practical than a string name
+    field_number = models.CharField(max_length=24)
 
 
 class Squad(models.Model):
@@ -61,13 +60,13 @@ class Squad(models.Model):
 class Game(models.Model):
     division = models.ForeignKey(TournamentDivision)  # TODO: Redundant? Contained in Squad.division
     date = models.DateTimeField('Game Time')
-    squad_home = models.ForeignKey(Squad, related_name='squad_home')  # TODO: What does related_name do?
+    squad_home = models.ForeignKey(Squad, related_name='squad_home')
     squad_away = models.ForeignKey(Squad, related_name='squad_away')
     # type = models.ForeignKey(GameType)
     # round = models.IntegerField()
 
 
-class GameScore(models.Model):  # TODO (Feedback): OneToOne Relation atm --> necessary?
+class GameScore(models.Model):
     score_home = models.IntegerField()
     score_away = models.IntegerField()
     game = models.OneToOneField(Game)
@@ -89,7 +88,6 @@ class Profile(models.Model):
                           team=self.team_id.name)
 
 
-# TODO (Feedback): I don't think the way we wrote it down made much sense. Is this better?
 class SpiritReport(models.Model):
     squad_from = models.ForeignKey(Squad, related_name='squad_from')
     squad_for = models.ForeignKey(Squad, related_name='squad_for')
