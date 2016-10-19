@@ -1,6 +1,6 @@
 .. image:: https://readthedocs.org/projects/ultimate/badge/?version=latest
-:target: http://ultimate.readthedocs.io/en/latest/?badge=latest
-:alt: Documentation Status
+   :target: http://ultimate.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 ultimate
 ========
