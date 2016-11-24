@@ -1,18 +1,17 @@
 """This module is used to populate common tables."""
 
+# TODO: Fix according to new model
 import pandas as pd
+import os
 from django.core.management.base import BaseCommand
-from ...models import Nationality, Division, TournamentType, GameType, \
-    GameReportEventType, SpiritScoreCategory
+from ... import models
 
-BASE_URL = "https://raw.githubusercontent.com/mansenfranzen/ultimate/" \
-              "master/material/db_populate/_db_populate_{class_name}.csv"
+BASE_URL = os.path.join('..', 'material', 'db_populate', '_db_populate_{class_name}.csv')
 
 
 class Command(BaseCommand):
-
-
-    def populate_from_csv(self, model):
+    @staticmethod
+    def populate_from_csv(model):
         """Fetch csv from github repo and populate db table.
 
         The read_csv method requires the keep_default_na and na_values
@@ -28,11 +27,7 @@ class Command(BaseCommand):
         for idx, row in csv.iterrows():
             model.objects.create(**row.to_dict())
 
-
     def handle(self, *args, **options):
-        self.populate_from_csv(Nationality)
-        self.populate_from_csv(Division)
-        self.populate_from_csv(TournamentType)
-        self.populate_from_csv(GameType)
-        self.populate_from_csv(GameReportEventType)
-        self.populate_from_csv(SpiritScoreCategory)
+        classes = [models.SpiritScoreCategory]
+        for class_name in classes:
+            self.populate_from_csv(class_name)
